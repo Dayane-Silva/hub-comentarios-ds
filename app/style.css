@@ -1,0 +1,45 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.comments { 
+    text-align: left;
+    width: 400px;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    color: black;
+    font-weight: bolder;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.comments * {
+    display: block;
+}
+
+.comments label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#form-comentario textarea, input {
+    display: block;
+    color: black;
+    border-radius: 5px;
+    border: 2px solid black;
+    background-color: cornsilk;
+}
+
+#form-comentario .btn-submit {
+    margin-top: 25px;
+    padding: 10px;  
+    width: 100px;
+}
+
+#form-comentario form {
+    margin: 20px auto 0px auto;
+    padding: 10px auto 0px auto;  
+}
+
+
