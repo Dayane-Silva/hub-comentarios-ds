@@ -38,7 +38,12 @@ body {
     width: 100px;
 }
 
+#login-form *{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
 
+#login-form,
 #form-comentario{
     height: fit-content;
 }
@@ -51,4 +56,16 @@ body {
     display: inline;
     font-size: smaller;
     height: fit-content;
+}
+
+.disabled{
+    display: none;
+}
+
+.comments{
+    transition: all 0.5s ease;
+}
+.comments.disabled{
+    opacity: 0;
+    pointer-events: none;
 }
