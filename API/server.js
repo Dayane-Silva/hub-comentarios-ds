@@ -51,3 +51,6 @@ server.get('/user', (req, res) => {
 server.listen(PORT, () =>{
     console.log(`O server está rodando em http:\\localhost:${PORT}`)
 } )
+
+
+/*Oi*/
