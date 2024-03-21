@@ -1,6 +1,9 @@
 import { formatDate, lightColor, darkColor } from "../utils.js";
 import { CommentService } from '../services/comment.services.js'
 import { Comment } from "../models/comment.model.js";
+import { User } from "../models/user.model.js";
+
+let _user = new User()
 
 const getInputComment = () => {
     return {
@@ -66,12 +69,11 @@ const displayComment = (comments) => {
                 <span class="comment">
                 ${item.getComment()}
                 </span>
-            </p>       
+            </p>        
         `
         divFeed.appendChild(divDisplay);
     })
 }
-
 
 const CommentComponent = {
     run: () => {
@@ -80,6 +82,9 @@ const CommentComponent = {
         window.onload = () => {
             loadComment();
         }
+    },
+    params: (usr) => {
+        _user = usr;
     }
 }
 

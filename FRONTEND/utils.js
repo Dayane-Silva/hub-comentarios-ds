@@ -26,7 +26,7 @@ function darkColor() {
 }
 
 function lightColor() {
-    let lightPalete= ['d691cf', 'ffb8f7', 'd095c9','f7e6f4', 'ff9fd0']
+    let lightPalete= ['d691cf', 'ffb8f7', 'FFFFFF','f7e6f4', 'ff9fd0']
     return randomColor(lightPalete) ;
 }
 
