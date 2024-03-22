@@ -17,21 +17,31 @@ const setInputComment = (authorValue, commentValue) => {
     author.value = authorValue
     comment.value = commentValue
 }
-
+const clearCommentField = () => {
+    const {comment } = getInputComment();
+    comment.value = ''
+}
 const getInputCommentValue = () => {
     return {
         author: document.getElementById('inputAuthor').value,
-        comment: document.getElementById('inputComment').value
+        comment_text: document.getElementById('inputComment').value
     }
 }
 
 const submitComment = (event) => {
     event.preventDefault();
     const comment = getInputCommentValue()
-
-    //requisção Post para enviar o comment
-
-    loadComment()
+    CommentService.apiPostComment(comment).then((response) => {
+        if (response.success){
+            alert(response)
+            clearCommentField();
+            loadComment()
+        } else {
+            alert(response.error)
+        }
+}).catch((error) => {
+    console.log(error)
+});
 }
 
 const loadComment = () => {
