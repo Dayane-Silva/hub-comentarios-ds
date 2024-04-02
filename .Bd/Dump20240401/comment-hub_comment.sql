@@ -42,7 +42,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,1,'Primeiro Comentário','2024-03-28 00:53:21','2024-03-28 00:53:21'),(2,2,'Segundo Comentário','2024-03-28 00:53:21','2024-03-28 00:53:21'),(3,3,'Terceiro Comentário','2024-03-28 00:53:21','2024-03-28 00:53:21'),(4,1,'Primeiro Comentário','2024-03-28 00:58:40','2024-03-28 00:58:40'),(5,2,'Segundo Comentário','2024-03-28 00:58:40','2024-03-28 00:58:40'),(6,3,'Terceiro Comentário','2024-03-28 00:58:40','2024-03-28 00:58:40'),(7,4,'Qualquer coisa','2024-03-28 01:09:06','2024-03-28 01:09:06'),(8,5,'Estou cansado','2024-03-28 01:09:06','2024-03-28 01:09:06'),(9,2,'Estou com dor de cabeça. Será que é dengue?','2024-03-28 01:09:06','2024-03-28 01:09:06');
+INSERT INTO `comment` VALUES (1,1,'Primeiro Comentário','2024-03-28 00:53:21','2024-03-28 00:53:21'),(2,2,'Segundo Comentário','2024-03-28 00:53:21','2024-03-28 00:53:21'),(3,3,'Terceiro Comentário','2024-03-28 00:53:21','2024-03-28 00:53:21'),(4,1,'Primeiro Comentário','2024-03-28 00:58:40','2024-03-28 00:58:40');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

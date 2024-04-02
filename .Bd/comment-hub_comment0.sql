@@ -40,7 +40,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (1,'Victor','Este é o comentário de teste','2024-03-13 00:54:34','2024-03-13 00:54:34');
+INSERT INTO `comment` VALUES (1,'Dayane','Este é o comentário de teste','2024-03-13 00:54:34','2024-03-13 00:54:34');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

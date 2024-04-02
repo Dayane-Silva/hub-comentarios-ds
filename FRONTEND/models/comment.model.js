@@ -25,14 +25,17 @@ class Comment {
         } else {
             this.id = null;
             this.userId = null;
-            this.author = author;
-            this.comment_text = comment_text
+            this.author = null;
+            this.comment_text = null;
             this.created_at = null;
             this.updated_at = null;
         }
     }
     getId() {
         return this.id;
+    }
+    getUserId() {
+        return this.userId;
     }
     getAuthor() {
         return this.author;
