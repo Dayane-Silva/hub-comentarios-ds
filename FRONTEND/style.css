@@ -2,26 +2,19 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.comments { 
+.comments {
     text-align: left;
     width: 400px;
     max-width: 400px;
     margin: 20px auto;
     padding: 20px;
-    color: black;
+    color: rgb(74, 17, 161);
     font-weight: bolder;
-    /*border: 1px solid rgba(78, 19, 179, 0.176);*/
+    /* border: 1px solid rgba(0, 0, 0, 0.2); */
     border-radius: 10px;
 }
-styleFeed{
-  
-    padding: inherit;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    border-radius: 12px;
-    width: 100%;
-    height: 100%;
-  }
-.comments * {
+
+.comments *{
     display: block;
 }
 
@@ -32,22 +25,22 @@ styleFeed{
 
 #form-comentario textarea, input {
     display: block;
-    color: black;
+    color: rgb(17, 35, 41);
     border-radius: 5px;
-    border: 2px solid rgba(78, 19, 179, 0.263); 
-    background-color: rgba(229, 229, 228, 0.507);
+    border: none;
+    background-color: antiquewhite;
     padding: 5px;
 }
 
-.btn-submit {
+.btn-submit{
     margin-top: 25px;
-    padding: 10px;  
+    padding: 10px;
     width: 100px;
 }
 
-#login-form *{
-    margin-top: 10px;
-    margin-bottom: 10px;
+#login-form * {
+ margin-top: 10px;
+ margin-bottom: 10px;
 }
 
 #login-form,
@@ -55,10 +48,11 @@ styleFeed{
     height: fit-content;
 }
 
-#form-comentario form {
-    margin: 20px auto 0px auto;
-    padding: 10px auto 0px auto;  
+#form-comentario form{
+    margin: 10px auto 0px auto;
+    padding: 10px auto 0px auto;
 }
+
 .date-style{
     display: inline;
     font-size: smaller;
@@ -72,28 +66,47 @@ styleFeed{
 .comments{
     transition: all 0.5s ease;
 }
+
 .comments.disabled{
     opacity: 0;
     pointer-events: none;
 }
 
-#comment-feed {
+.btn {
+    color:white;
+    background-color: rgb(74, 17, 161);
+}
+.feed{
+    max-height: 80vh;
+} 
+#comment-feed{
     max-height: 60vh;
-    max-width: 60vh;
-    overflow: auto;
-    overflow-y: auto;
+    overflow-y: scroll;
     overflow-x: hidden;
-    padding: 10px;
+    margin: 10px auto 0px auto;
 }
 
-
-::-webkit-scrollbar{
+#comment-feed::-webkit-scrollbar {
     width: 8px;
     height: 10px;
 }
 
-::-webkit-scrollbar-thumb{
+#comment-feed::-webkit-scrollbar-thumb {
     border-radius: 8px;
     background: #c2c9d2;
-
 }
+
+header{
+    height: 10vh;
+    max-height: 10vh;
+}
+
+#user-profile {
+    float: right;
+    margin: 20px 20px auto auto !important;
+}
+
+#user-profile p{
+    margin: 5px 5px;
+}
+

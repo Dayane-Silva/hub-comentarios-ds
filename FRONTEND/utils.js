@@ -1,5 +1,3 @@
-// utils.js
-
 const formatDate = (data) => {
     const currentDate = new Date(data);
     const options = {
@@ -13,22 +11,22 @@ const formatDate = (data) => {
     return formattedDate.replace(',', ' às') + 'hs';
 }
 
-
-
-function randomColor(vetorColor) {
-    const index = Math.floor(Math.random()*3);
-    return vetorColor[index];
+const randomInt = (value) => {
+    return Math.floor(Math.random() * value)
 }
 
-function darkColor() {
-    let darkPalete= ['5a1d55', '83447e','ad6aa6', '542251', 'bc3d72']
-    return randomColor(darkPalete) ;
+const randomColors = () => {
+    let darkPalette = ['8A2BE2', '430372', '3C0366', '38055D', '7F00FF']
+    let lightPalette = ['9583B6','A087CD', '9C82CB', '9377C6', '8B5BE4']
+
+    let colors = []
+    colors.push(darkPalette)
+    colors.push(lightPalette)
+
+    return {
+        dark: colors[0][randomInt(colors[0].length)],
+        light: colors[1][randomInt(colors[1].length)]
+    }
 }
 
-function lightColor() {
-    let lightPalete= ['d691cf', 'ffb8f7', 'FFFFFF','f7e6f4', 'ff9fd0']
-    return randomColor(lightPalete) ;
-}
-
-
-export {formatDate, lightColor, darkColor}
+export { formatDate, randomColors }
