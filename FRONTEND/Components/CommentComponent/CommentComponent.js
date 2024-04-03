@@ -1,21 +1,23 @@
 import { formatDate, randomColors } from "../../utils.js";
 import { CommentService } from '../../services/comment.services.js'
 import { Comment } from "../../models/comment.model.js";
-import { User } from "../../models/user.model.js";
+import { StorageServices } from "../../services/localStorage.service.js";
 
 
-const getInputComment = () => {
-    return {
-        author: document.getElementById('inputAuthor'),
-        comment: document.getElementById('inputComment')
-    }
+const getCommentInput = () => {
+    return document.getElementById('inputComment')
 }
-
-const setInputComment = (authorValue, commentValue) => {
-    const { author, comment } = getInputComment();
-    author.value = authorValue
+const getInputCommentValue = () => {
+    return document.getElementById('inputComment').value
+}
+const setInputComment = (commentValue) => {
+    const { comment } = getCommentInput();
     comment.value = commentValue
 }
+const clearCommentField = () => {
+    getCommentInput().value = ''
+}
+
 
 const setAuthorCommentField = (usr) => {
     const inputAuthor = document.getElementById('inputAuthor');
@@ -24,27 +26,19 @@ const setAuthorCommentField = (usr) => {
     inputAuthor.style.color = '#FFF'
 }
 
-const clearCommentField = () => {
-    const { comment } = getInputComment();
-    comment.value = ''
-}
-
-
-const getInputCommentValue = () => {
-    return {
-        author: document.getElementById('inputAuthor').value,
-        comment_text: document.getElementById('inputComment').value
-    }
-}
-
 const submitComment = (event) => {
     event.preventDefault();
-    const comment = getInputCommentValue(); 
-    CommentService.apiPostComment(comment).then(result => { 
-            alert(result)
-            clearCommentField();
-            loadComment();
-    }).catch((error) => { 
+
+    const comment = {
+        userId: StorageServices.user.get().getId(),
+        comment_text: getInputCommentValue()
+    };
+
+    CommentService.apiPostComment(comment).then(result => {
+        alert(result)
+        clearCommentField();
+        loadComment();
+    }).catch((error) => {
         console.log(error)
     });
 }
@@ -61,7 +55,6 @@ const loadComment = () => {
         alert(error);
     })
 }
-
 
 const displayComment = (comments) => {
     const divFeed = document.getElementById('comment-feed');
