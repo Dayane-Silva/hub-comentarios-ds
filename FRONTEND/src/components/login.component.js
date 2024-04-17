@@ -1,7 +1,5 @@
-import { User } from "../../models/user.model.js";
-import { LoginService } from "../../services/login.services.js";
-import { StorageServices } from "../../services/localStorage.service.js";
-import { setAuthorCommentField } from "../CommentComponent/CommentComponent.js";
+import LoginService from "../services/login.service.js";
+import { setCommentField } from "./comment.component.js";
 
 
 const getLoginInputs = () => {
@@ -15,19 +13,19 @@ const handleShowHide = () => {
     const newCommentTag = document.getElementById('form-comentario');
     const loginTag = document.getElementById('login-form');
     const userProfile = document.getElementById('user-profile')
-   
-    if (newCommentTag.classList.contains('disabled')) {
+
+    if (newCommentTag.classList.contains('disabled') && LoginService.isLoggedIn()) {
         newCommentTag.classList.remove('disabled');
         userProfile.classList.remove('disabled');
         loginTag.classList.add('disabled');
-    } else {
+    } else if (!LoginService.isLoggedIn()) {
         newCommentTag.classList.add('disabled');
         userProfile.classList.add('disabled');
         loginTag.classList.remove('disabled');
     }
 }
 
-const userProfileTitle = (name) => {
+const userProfileHeader = (name) => {
     const aLink = document.getElementById("user-profile-title");
     aLink.innerHTML = ``;
     aLink.innerHTML = `<img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
@@ -36,25 +34,28 @@ const userProfileTitle = (name) => {
     </p>`;
 }
 
+const setSignedUser = () => {
+    const user = LoginService.getUserSession();
+    userProfileHeader(user.getFirstname());
+    setCommentField(user);
+    handleShowHide();
+
+}
+
 const handleLogin = (event) => {
     event.preventDefault();
     const { username, password } = getLoginInputs();
-
-    const usr = new User(null, username.value, password.value)
-
+    const usr = {
+        username: username.value,
+        password: password.value
+    }
     LoginService.apiAuthUser(usr).then(result => {
+        alert(result)
+        setSignedUser()
 
-        StorageServices.user.store(result);
-        const currentUser = StorageServices.user.get();
-
-        userProfileTitle(currentUser.getFirstname())
-        setAuthorCommentField(currentUser);
-
-        handleShowHide();
     }).catch(error => {
         alert(`Login inválido. Erro:${error.message}`)
     })
-
 }
 
 
@@ -62,7 +63,7 @@ const LoginComponent = {
     run: () => {
         const formLogin = document.getElementById('formLogin');
         formLogin.addEventListener('submit', handleLogin);
-    }
+    },
 }
 
-export { LoginComponent }
+export { LoginComponent, setSignedUser }

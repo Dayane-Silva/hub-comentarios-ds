@@ -1,10 +1,11 @@
-import { StorageServices } from "../../services/localStorage.service.js";
-import UserService from "../../services/user.services.js";
-import { formatDate, randomColors } from "../../utils.js";
+import UserService from "../services/user.service.js";
+import LoginService from "../services/login.service.js";
+import { formatDate, randomColors } from "../utils.js";
+import { loadComment } from "./comment.component.js";
 
 const loadUserData = () => {
-
-    displayUserData(StorageServices.user.get())
+    const user = LoginService.getUserSession();
+    displayUserData(user);
 }
 
 const iconeUsuario = (avatarColor) => {
@@ -67,17 +68,17 @@ const displayUserData = (user) => {
 }
 
 const handleMeusComentarios = () => {
-    const userId = StorageServices.user.get().getId()
-    UserService.apiGetUserComments(userId).then(data =>{
+    const user = LoginService.getUserSession();
+    UserService.apiGetUserComments(user.id).then(data => {
         displayUserComments(data)
-    }).catch(error =>{
+    }).catch(error => {
         alert(error.message)
     })
 }
 
 const displayUserComments = (comments) => {
     const divFeed = document.getElementById('comment-feed');
-    divFeed.innerHTML = `<h5 class="border-bottom pb-2 mb-0">Meus Comentários</h5>`
+    divFeed.innerHTML = `<h5 class="border-bottom pb-2 mb-0"><b>Meus Comentários</b></h5>`
     comments.forEach(item => {
         const divDisplay = document.createElement('div');
         divDisplay.className = 'd-flex text-body-secondary pt-3 border-bottom'
@@ -105,13 +106,16 @@ const displayUserComments = (comments) => {
 const handleShowHideUser = () => {
     const userDataTag = document.getElementById('user-data');
     const newCommentTag = document.getElementById('form-comentario');
-    if (userDataTag.classList.contains('disabled')) {
+    if (userDataTag.classList.contains('disabled') && LoginService.isLoggedIn()) {
         userDataTag.classList.remove('disabled');
         newCommentTag.classList.add('disabled');
         loadUserData();
     } else {
         userDataTag.classList.add('disabled');
-        newCommentTag.classList.remove('disabled');
+        if (LoginService.isLoggedIn()) {
+            newCommentTag.classList.remove('disabled');
+        }
+        loadComment()
     }
 }
 
